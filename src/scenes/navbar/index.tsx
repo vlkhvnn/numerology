@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import Logo from "@/assets/Logo.png";
-import Link from "./Link";
-import { SelectedPage } from "@/shared/types";
+import InstagramIcon from "@/assets/social/Insta.png";
+import TelegramIcon from "@/assets/social/Tg.png";
+import WhatsAppIcon from "@/assets/social/Whatsapp.png";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "@/shared/ActionButton";
+import { navItems } from "@/shared/constants";
+import { SelectedPage } from "@/shared/types";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
+import Link from "./Link";
 
 type Props = {
   isTopOfPage: boolean;
@@ -25,44 +27,63 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
       >
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
-            {/* LEFT SIDE */}
-            <img alt="logo" src={Logo} />
-
-            {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
-                <div className={`${flexBetween} gap-8 text-sm`}>
-                  <Link
-                    page="Home"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <Link
-                    page="Benefits"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <Link
-                    page="Our Classes"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <Link
-                    page="Contact Us"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
+                <div className={`${flexBetween} gap-8 text-m`}>
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      page={item.label}
+                      href={item.href as SelectedPage}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  ))}
                 </div>
                 <div className={`${flexBetween} gap-8`}>
-                  <p>Sign In</p>
-                  <ActionButton setSelectedPage={setSelectedPage}>
-                    Become a Member
-                  </ActionButton>
+                  {/* SOCIAL ICONS */}
+                  <a
+                    href="https://instagram.com/kamshat"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      alt="Instagram"
+                      src={InstagramIcon}
+                      className="h-6 w-6 hover:opacity-80 transition"
+                    />
+                  </a>
+                  <a
+                    href="https://t.me/Kamshat_BZh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      alt="Telegram"
+                      src={TelegramIcon}
+                      className="h-6 w-6 hover:opacity-80 transition"
+                    />
+                  </a>
+                  <a
+                    href="https://wa.me/77080546175"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      alt="WhatsApp"
+                      src={WhatsAppIcon}
+                      className="h-6 w-6 hover:opacity-80 transition"
+                    />
+                  </a>
+                  <span className="text-m">+7(903)61-35-20</span>
+                  <a href="mailto:kamshat@gmail.com" className="text-m">
+                  kamshat@gmail.com
+                  </a>
                 </div>
               </div>
             ) : (
               <button
-                className="rounded-full bg-secondary-500 p-2"
+                className="absolute right-6 top-1 rounded-full bg-secondary-500 p-2"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
               >
                 <Bars3Icon className="h-6 w-6 text-white" />
@@ -74,7 +95,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
       {/* MOBILE MENU MODAL */}
       {!isAboveMediumScreens && isMenuToggled && (
-        <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl">
+        <div className="fixed right-0 bottom-0 z-40 h-full w-[250px] bg-primary-100 drop-shadow-xl">
           {/* CLOSE ICON */}
           <div className="flex justify-end p-12">
             <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
@@ -83,27 +104,55 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
           </div>
 
           {/* MENU ITEMS */}
-          <div className="ml-[33%] flex flex-col gap-10 text-2xl">
-            <Link
-              page="Home"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Benefits"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Our Classes"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Contact Us"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
+          <div className="flex flex-col gap-8 text-2xl">
+            {/* NAV ITEMS */}
+            <div className="flex flex-col gap-6 pl-4">
+              {navItems.map((item) => (
+                <Link
+                key={item.href}
+                page={item.label}
+                href={item.href as SelectedPage}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+                />
+                ))}
+            </div>
+            {/* SOCIAL ICONS */}
+            <div className="flex justify-center gap-8 mt-10">
+              <a
+                href="https://instagram.com/kamshat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  alt="Instagram"
+                  src={InstagramIcon}
+                  className="h-8 w-8 hover:opacity-80 transition"
+                />
+              </a>
+              <a
+                href="https://t.me/Kamshat_BZh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  alt="Telegram"
+                  src={TelegramIcon}
+                  className="h-8 w-8 hover:opacity-80 transition"
+                />
+              </a>
+              <a
+                href="https://wa.me/77080546175"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  alt="WhatsApp"
+                  src={WhatsAppIcon}
+                  className="h-8 w-8 hover:opacity-80 transition"
+                />
+              </a>
+            </div>
           </div>
         </div>
       )}

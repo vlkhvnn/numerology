@@ -1,14 +1,14 @@
+import BenefitsPageGraphic from "@/assets/BenefitsPageGraphic.png";
 import ActionButton from "@/shared/ActionButton";
 import HText from "@/shared/HText";
 import { BenefitType, SelectedPage } from "@/shared/types";
 import {
+  AcademicCapIcon,
   HomeModernIcon,
   UserGroupIcon,
-  AcademicCapIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import BenefitsPageGraphic from "@/assets/BenefitsPageGraphic.png";
-import Benefit from "./Benefit";
+import Services from "./Services";
 
 const benefits: Array<BenefitType> = [
   {
@@ -44,9 +44,9 @@ type Props = {
 
 const Benefits = ({ setSelectedPage }: Props) => {
   return (
-    <section id="benefits" className="mx-auto min-h-full w-5/6 py-20">
+    <section id="services" className="mx-auto min-h-full w-5/6 py-20">
       <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}
+        onViewportEnter={() => setSelectedPage(SelectedPage.Services)}
       >
         {/* HEADER */}
         <motion.div
@@ -77,7 +77,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
           variants={container}
         >
           {benefits.map((benefit: BenefitType) => (
-            <Benefit
+            <Services
               key={benefit.title}
               icon={benefit.icon}
               title={benefit.title}

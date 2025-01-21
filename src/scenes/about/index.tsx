@@ -1,27 +1,26 @@
-import useMediaQuery from "@/hooks/useMediaQuery";
-import { SelectedPage } from "@/shared/types";
-import ActionButton from "@/shared/ActionButton";
-import HomePageText from "@/assets/HomePageText.png";
-import HomePageGraphic from "@/assets/HomePageGraphic.png";
-import SponsorRedBull from "@/assets/SponsorRedBull.png";
+import HeroImage from "@/assets/hero-image.jpg";
 import SponsorForbes from "@/assets/SponsorForbes.png";
 import SponsorFortune from "@/assets/SponsorFortune.png";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import SponsorRedBull from "@/assets/SponsorRedBull.png";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import ActionButton from "@/shared/ActionButton";
+import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Home = ({ setSelectedPage }: Props) => {
+const About = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   return (
-    <section id="home" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-0">
+    <section id="about" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-0">
       {/* IMAGE AND MAIN HEADER */}
       <motion.div
         className="mx-auto w-5/6 items-center justify-center md:flex md:h-5/6"
-        onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
+        onViewportEnter={() => setSelectedPage(SelectedPage.About)}
       >
         {/* MAIN HEADER */}
         <div className="z-10 mt-32 md:basis-3/5">
@@ -38,16 +37,17 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <div className="relative">
-              <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-evolvetext">
-                <img alt="home-page-text" src={HomePageText} />
-              </div>
+              <h1 className="text-4xl font-bold md:text-6xl">
+                Камшат Болысбаева
+              </h1>
             </div>
 
-            <p className="mt-8 text-sm">
-              Unrivaled Gym. Unparalleled Training Fitness Classes. World Class
-              Studios to get the Body Shapes That you Dream of.. Get Your Dream
-              Body Now.
-            </p>
+            <h2 className="mt-8 text-2xl md:text-2xl">
+              Психолог, Нумеролог
+            </h2>
+            <h2 className="mt-2 text-2xl md:text-2xl">
+              Арт-Терапевт, Игропрактик
+            </h2>
           </motion.div>
 
           {/* ACTIONS */}
@@ -63,12 +63,12 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <ActionButton setSelectedPage={setSelectedPage}>
-              Join Now
+              Получить консультацию
             </ActionButton>
             <AnchorLink
               className="text-sm font-bold text-primary-500 underline hover:text-secondary-500"
-              onClick={() => setSelectedPage(SelectedPage.ContactUs)}
-              href={`#${SelectedPage.ContactUs}`}
+              onClick={() => setSelectedPage(SelectedPage.NumericalInfo)}
+              href={`#${SelectedPage.NumericalInfo}`}
             >
               <p>Learn More</p>
             </AnchorLink>
@@ -77,10 +77,10 @@ const Home = ({ setSelectedPage }: Props) => {
 
         {/* IMAGE */}
         <div
-          className="flex basis-3/5 justify-center md:z-10
+          className="flex basis-2/5 justify-center md:z-10
               md:ml-40 md:mt-16 md:justify-items-end"
         >
-          <img alt="home-pageGraphic" src={HomePageGraphic} />
+          <img alt="home-heroImage" src={HeroImage} />
         </div>
       </motion.div>
 
@@ -100,4 +100,4 @@ const Home = ({ setSelectedPage }: Props) => {
   );
 };
 
-export default Home;
+export default About;
