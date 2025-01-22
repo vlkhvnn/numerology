@@ -1,5 +1,4 @@
-import BenefitsPageGraphic from "@/assets/BenefitsPageGraphic.png";
-import ActionButton from "@/shared/ActionButton";
+import BenefitsPageGraphic from "@/assets/hero-image.jpg";
 import HText from "@/shared/HText";
 import { BenefitType, SelectedPage } from "@/shared/types";
 import {
@@ -119,7 +118,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
           />
 
           {/* DESCRIPTION */}
-          <div>
+          <div className="mt-8 md:mt-0">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -148,16 +147,12 @@ const Benefits = ({ setSelectedPage }: Props) => {
             >
               <p className="my-5">
                 Нумерология поможет вам понять свои сильные и слабые стороны,
-                раскрыть потенциал и преодолеть жизненные препятствия.
+                раскрыть потенциал и преодолеть жизненные препятствия. Она предоставляет ценные
+                инструменты для самопознания, помогает улучшить личную жизнь и карьеру, а также
+                понять свое предназначение и жизненный путь.
+
               </p>
             </motion.div>
-
-            {/* BUTTON */}
-            <div className="relative mt-16">
-              <ActionButton setSelectedPage={setSelectedPage}>
-                Узнать больше
-              </ActionButton>
-            </div>
           </div>
         </div>
       </motion.div>

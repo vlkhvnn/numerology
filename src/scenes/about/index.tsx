@@ -1,6 +1,5 @@
 import HeroImage from "@/assets/hero-image.jpg";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "@/shared/ActionButton";
 import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
 
@@ -58,9 +57,6 @@ const About = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, x: 0 },
             }}
           >
-            <ActionButton setSelectedPage={setSelectedPage}>
-              Получить консультацию
-            </ActionButton>
           </motion.div>
         </div>
 

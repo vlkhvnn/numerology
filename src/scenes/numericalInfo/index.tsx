@@ -1,157 +1,72 @@
-import ContactUsPageGraphic from "@/assets/ContactUsPageGraphic.png";
+import Services from "@/scenes/services/Services";
 import HText from "@/shared/HText";
 import { SelectedPage } from "@/shared/types";
+import { AcademicCapIcon, HomeModernIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
 const NumericalInfo = ({ setSelectedPage }: Props) => {
-  const inputStyles = `mb-5 w-full rounded-lg bg-primary-300
-  px-5 py-3 placeholder-white`;
-
-  const {
-    register,
-    trigger,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = async (e: any) => {
-    const isValid = await trigger();
-    if (!isValid) {
-      e.preventDefault();
-    }
-  };
+  const services = [
+    {
+      icon: <HomeModernIcon className="h-6 w-6 text-primary-500" />, 
+      title: "Для онлайн-сессии и письменных расчётов",
+      description: (
+        <ul className="text-left list-none pl-5">
+          <li>ФИО на русском и английском языках (как в паспорте)</li><br />
+          <li>Дата рождения (фактическая и по паспорту)</li><br />
+          <li>Место и Время рождения (если известно)</li><br />
+          <li>Способ рождения: естественное или кесарево</li><br />
+          <li>Если меняли Фамилию, то данные старой и дата смены</li><br />
+          <li>ФИО и Дата рождения Родителей, Бабушек и Дедушек (если известно)</li>
+        </ul>
+      ),
+    },
+    {
+      icon: <UserGroupIcon className="h-6 w-6 text-secondary-500" />, 
+      title: "Для онлайн-сессии \"Разбор Родовой Структуры\"",
+      description: (
+        <p className="text-left">
+          Расчёты и анализ проводятся на основе данных, внесённых в специальную Анкету, которая заранее отправляется Клиенту на e-mail.
+        </p>
+      ),
+    },
+    {
+      icon: <AcademicCapIcon className="h-6 w-6 text-tertiary-500" />, 
+      title: "Для онлайн-разборов в рамках Фокус-группы",
+      description: (
+        <p className="text-left">
+          Расчёты проводятся на основе заполненной Анкеты, которая заранее отправляется на e-mail. Информация публикуется в Telegram.
+        </p>
+      ),
+    },
+  ];
 
   return (
-    <section id="numericalInfo" className="mx-auto w-5/6 pt-24 pb-32">
+    <section id="numericalInfo" className="mx-auto w-5/6 py-24">
       <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPage.NumericalInfo)}
       >
-        {/* HEADER */}
         <motion.div
-          className="md:w-3/5"
+          className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: -50 }, visible: { opacity: 1, y: 0 } }}
         >
-          <HText>
-            <span className="text-primary-500">JOIN NOW</span> TO GET IN SHAPE
-          </HText>
-          <p className="my-5">
-            Congue adipiscing risus commodo placerat. Tellus et in feugiat nisl
-            sapien vel rhoncus. Placerat at in enim pellentesque. Nulla
-            adipiscing leo egestas nisi elit risus sit. Nunc cursus sagittis.
+          <HText>Цифровые данные, необходимые для расчёта и диагностики</HText>
+          <p className="mt-5 text-gray-800 max-w-2xl mx-auto">
+            Пожалуйста, предоставьте необходимые данные для точных расчётов и диагностики.
           </p>
         </motion.div>
 
-        {/* FORM AND IMAGE */}
-        <div className="mt-10 justify-between gap-8 md:flex">
-          <motion.div
-            className="mt-10 basis-3/5 md:mt-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <form
-              target="_blank"
-              onSubmit={onSubmit}
-              action="https://formsubmit.co/e8a5bdfa807605332f809e5656e27c6e"
-              method="POST"
-            >
-              <input
-                className={inputStyles}
-                type="text"
-                placeholder="NAME"
-                {...register("name", {
-                  required: true,
-                  maxLength: 100,
-                })}
-              />
-              {errors.name && (
-                <p className="mt-1 text-primary-500">
-                  {errors.name.type === "required" && "This field is required."}
-                  {errors.name.type === "maxLength" &&
-                    "Max length is 100 char."}
-                </p>
-              )}
-
-              <input
-                className={inputStyles}
-                type="text"
-                placeholder="EMAIL"
-                {...register("email", {
-                  required: true,
-                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                })}
-              />
-              {errors.email && (
-                <p className="mt-1 text-primary-500">
-                  {errors.email.type === "required" &&
-                    "This field is required."}
-                  {errors.email.type === "pattern" && "Invalid email address."}
-                </p>
-              )}
-
-              <textarea
-                className={inputStyles}
-                placeholder="MESSAGE"
-                rows={4}
-                cols={50}
-                {...register("message", {
-                  required: true,
-                  maxLength: 2000,
-                })}
-              />
-              {errors.message && (
-                <p className="mt-1 text-primary-500">
-                  {errors.message.type === "required" &&
-                    "This field is required."}
-                  {errors.message.type === "maxLength" &&
-                    "Max length is 2000 char."}
-                </p>
-              )}
-
-              <button
-                type="submit"
-                className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
-              >
-                SUBMIT
-              </button>
-            </form>
-          </motion.div>
-
-          <motion.div
-            className="relative mt-16 basis-2/5 md:mt-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext">
-              <img
-                className="w-full"
-                alt="contact-us-page-graphic"
-                src={ContactUsPageGraphic}
-              />
-            </div>
-          </motion.div>
+        <div className="flex flex-col md:flex-row justify-center gap-10">
+          {services.map((service, index) => (
+            <Services key={index} icon={service.icon} title={service.title} description={service.description} />
+          ))}
         </div>
       </motion.div>
     </section>
