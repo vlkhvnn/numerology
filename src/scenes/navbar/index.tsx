@@ -75,7 +75,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                       className="h-6 w-6 hover:opacity-80 transition"
                     />
                   </a>
-                  <span className="text-m">+7(903)61-35-20</span>
+                  <span className="text-m">+7(702)-777-25-56</span>
                   <a href="mailto:kamshat@gmail.com" className="text-m">
                   kamshat@gmail.com
                   </a>
