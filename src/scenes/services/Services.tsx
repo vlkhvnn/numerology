@@ -15,7 +15,7 @@ const Services = ({ icon, title, description }: Props) => {
   return (
     <motion.div
     variants={childVariant}
-    className="flex flex-col justify-between w-full md:w-1/3 rounded-md border-2 border-gray-100 px-5 py-8 text-center"
+    className="mt-8 md:mt-0 flex flex-col justify-between w-full md:w-1/3 rounded-md border-2 border-gray-100 px-5 py-8 text-center"
   >
     <div className="mb-4 flex justify-center">
       <div className="rounded-full border-2 border-gray-100 bg-primary-100 p-4">

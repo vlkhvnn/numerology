@@ -88,12 +88,12 @@ const Benefits = ({ setSelectedPage }: Props) => {
           }}
         >
           <HText>Виды услуг</HText>
-          <p className="my-5 text-m">Запишитесь на консультацию через WhatsApp.</p>
+          <p className="mt-5 text-m">Запишитесь на консультацию через WhatsApp.</p>
         </motion.div>
 
         {/* BENEFITS */}
         <motion.div
-          className="mt-5 items-stretch justify-between gap-8 md:flex"
+          className="items-stretch justify-between gap-8 md:flex"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
